@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WeatherNow — Real-Time Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet"/>
+  <!-- jQuery via CDN -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- Error Banner -->
+  <div id="error-banner" class="error-banner hidden">
+    <span id="error-msg">⚠ Network error — please check your connection.</span>
+    <button id="retry-btn">Retry</button>
+    <button id="close-error">✕</button>
+  </div>
+
+  <div class="app-wrapper">
+
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo">
+        <span class="logo-icon">⛅</span>
+        <span class="logo-text">WeatherNow</span>
+      </div>
+      <p class="logo-sub">Real-time weather powered by Open-Meteo</p>
+    </header>
+
+    <!-- Search -->
+    <section class="search-section">
+      <div class="search-bar">
+        <input type="text" id="city-input" placeholder="Search city…" autocomplete="off" maxlength="60"/>
+        <button id="search-btn">Search</button>
+      </div>
+      <div id="validation-msg" class="validation-msg hidden">
+        ⚠ Please enter at least 2 characters.
+      </div>
+
+      <!-- Recent searches chips -->
+      <div id="recent-chips" class="recent-chips"></div>
+    </section>
+
+    <!-- Current Weather Card -->
+    <section class="current-section">
+      <div class="current-card" id="current-card">
+        <div class="current-left">
+          <div class="city-name skeleton" id="city-name">City Name</div>
+          <div class="weather-desc skeleton" id="weather-desc">Weather description</div>
+          <div class="local-time skeleton" id="local-time">--:-- --</div>
+        </div>
+        <div class="current-right">
+          <div class="temp-display skeleton" id="temperature">--°</div>
+          <div class="weather-icon" id="weather-icon">🌡</div>
+          <div class="unit-toggle">
+            <button id="unit-c" class="unit-btn active">°C</button>
+            <span>/</span>
+            <button id="unit-f" class="unit-btn">°F</button>
+          </div>
+        </div>
+        <div class="current-details">
+          <div class="detail-item">
+            <span class="detail-label">Humidity</span>
+            <span class="detail-value skeleton" id="humidity">--%</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Wind</span>
+            <span class="detail-value skeleton" id="wind-speed">-- km/h</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7-Day Forecast -->
+    <section class="forecast-section">
+      <h2 class="section-title">7-Day Forecast</h2>
+      <div class="forecast-row" id="forecast-row">
+        <!-- Cards injected by JS -->
+      </div>
+    </section>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
